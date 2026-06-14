@@ -33,11 +33,13 @@
     <aside class="filters" aria-label="filters">
       <section class="panel api-panel">
         <h2>Live data key</h2>
-        <p>Paste a TMDb v3 API key to fetch posters and current U.S. watch providers. It stays in this browser only.</p>
-        <label for="apiKeyInput">TMDb API key</label>
+        <p>Paste a TMDb <strong>v3 API key</strong> or the longer <strong>v4 Read Access Token</strong> to fetch posters and current watch providers. It stays in this browser only.</p>
+        <label for="apiKeyInput">TMDb API key or Read Access Token</label>
         <div class="key-row">
-          <input id="apiKeyInput" type="password" placeholder="paste key here" autocomplete="off" />
+          <input id="apiKeyInput" type="password" placeholder="short v3 key or long v4 token" autocomplete="off" />
           <button id="saveKeyBtn">Save</button>
+          <button id="testKeyBtn" class="mini">Test</button>
+          <button id="clearLiveBtn" class="mini">Refresh</button>
         </div>
         <div class="region-row">
           <label for="regionSelect">Region</label>
@@ -48,7 +50,8 @@
             <option value="AU">Australia</option>
           </select>
         </div>
-        <p class="tiny">Without a key, the site still works as a curated movie browser with generated poster cards and JustWatch search links.</p>
+        <div class="notice"><strong>Where to watch appears on every movie card after live data loads.</strong> If you only see “not loaded yet,” click the big Load button after saving your TMDb key/token.</div>
+        <p class="tiny">Without a key, the site still works as a curated movie browser with generated poster cards and JustWatch search links, but it cannot list exact streaming providers inside the site.</p>
       </section>
 
       <section class="panel">
@@ -86,7 +89,7 @@
 
       <section class="panel">
         <h2>Data status</h2>
-        <div id="statusBox" class="status">Ready. Add a TMDb key for live streaming data.</div>
+        <div id="statusBox" class="status">Ready. Add a TMDb key/token, then each card will list where it streams.</div>
       </section>
     </aside>
 
@@ -98,6 +101,7 @@
         </div>
         <div class="toolbar-actions">
           <button id="resetBtn" class="ghost small">Reset filters</button>
+          <button id="exportVisibleBtn" class="ghost small">Export visible + streaming</button>
           <button id="exportBtn" class="ghost small">Export watchlist</button>
         </div>
       </div>
