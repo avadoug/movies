@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Movie Radar: Tardis808 Edition</title>
+  <meta name="description" content="A movies-only streaming discovery dashboard tailored to Tardis808/Doug's taste." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+  <header class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Movies only · streaming radar · curated for Doug</p>
+      <h1>Movie Radar <span>Tardis808 Edition</span></h1>
+      <p class="lead">A JustWatch-style movie wall for sci-fi brain-benders, comic universes, true-crime rise-and-fall chaos, stoner cult weirdness, horror funk, and game-adjacent adventure.</p>
+      <div class="hero-actions">
+        <button id="hydrateBtn" class="primary">Load posters & current streaming</button>
+        <button id="surpriseBtn" class="ghost">Pick something for me</button>
+        <button id="watchlistBtn" class="ghost">Show watchlist</button>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="stat"><strong id="totalCount">0</strong><span>curated movies</span></div>
+      <div class="stat"><strong id="visibleCount">0</strong><span>currently visible</span></div>
+      <div class="stat"><strong id="loadedCount">0</strong><span>live-data loaded</span></div>
+      <div class="radar-orb">🎬</div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="filters" aria-label="filters">
+      <section class="panel api-panel">
+        <h2>Live data key</h2>
+        <p>Paste a TMDb v3 API key to fetch posters and current U.S. watch providers. It stays in this browser only.</p>
+        <label for="apiKeyInput">TMDb API key</label>
+        <div class="key-row">
+          <input id="apiKeyInput" type="password" placeholder="paste key here" autocomplete="off" />
+          <button id="saveKeyBtn">Save</button>
+        </div>
+        <div class="region-row">
+          <label for="regionSelect">Region</label>
+          <select id="regionSelect">
+            <option value="US">US</option>
+            <option value="CA">Canada</option>
+            <option value="GB">UK</option>
+            <option value="AU">Australia</option>
+          </select>
+        </div>
+        <p class="tiny">Without a key, the site still works as a curated movie browser with generated poster cards and JustWatch search links.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Search</h2>
+        <input id="searchInput" class="wide" type="search" placeholder="search titles, tags, vibes..." />
+      </section>
+
+      <section class="panel">
+        <h2>Sort</h2>
+        <select id="sortSelect" class="wide">
+          <option value="score">Dougcore score</option>
+          <option value="title">Title A–Z</option>
+          <option value="yearDesc">Newest first</option>
+          <option value="yearAsc">Oldest first</option>
+          <option value="availability">Loaded streaming first</option>
+          <option value="watchlist">Watchlist first</option>
+        </select>
+      </section>
+
+      <section class="panel">
+        <h2>Vibe filters</h2>
+        <div id="tagFilters" class="chips"></div>
+      </section>
+
+      <section class="panel services-panel">
+        <div class="section-title-row">
+          <h2>My services</h2>
+          <button id="clearServicesBtn" class="mini">clear</button>
+        </div>
+        <p class="tiny">Save the services you already have, then toggle “only my services.”</p>
+        <div id="serviceFilters" class="service-list"></div>
+        <label class="toggle-line"><input id="onlyMineToggle" type="checkbox" /> Only show movies on my services</label>
+        <label class="toggle-line"><input id="freeToggle" type="checkbox" /> Free/ad-supported only</label>
+      </section>
+
+      <section class="panel">
+        <h2>Data status</h2>
+        <div id="statusBox" class="status">Ready. Add a TMDb key for live streaming data.</div>
+      </section>
+    </aside>
+
+    <section class="content">
+      <div class="toolbar">
+        <div>
+          <h2 id="viewTitle">All recommended movies</h2>
+          <p id="viewSubtitle">Only movies. No TV clutter in the timestream.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button id="resetBtn" class="ghost small">Reset filters</button>
+          <button id="exportBtn" class="ghost small">Export watchlist</button>
+        </div>
+      </div>
+      <div id="movieGrid" class="grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <dialog id="movieDialog" class="movie-dialog">
+    <button id="closeDialog" class="close-dialog" aria-label="close">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <footer>
+    <p>This product uses the TMDb API but is not endorsed or certified by TMDb. Streaming availability can change fast; use the provider buttons or JustWatch links as the final portal check.</p>
+  </footer>
+
+  <script src="movies.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "Movie Radar: Tardis808 Edition",
+  "movie_count": 316,
+  "created_files": [
+    "index.html",
+    "styles.css",
+    "app.js",
+    "movies.js",
+    "README.md"
+  ],
+  "uses_live_data": "TMDb API v3 movie search, movie details, watch providers, and image URLs when user provides an API key",
+  "only_movies": true
+}
